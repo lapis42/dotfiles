@@ -32,6 +32,9 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Tag generation
 Plugin 'majutsushi/tagbar' " needs to install ctags
 
+" REPL
+Plugin 'jpalardy/vim-slime'
+let g:slime_target = "tmux"
 
 call vundle#end()
 filetype plugin indent on
