@@ -1,0 +1,2 @@
+cd ~/Work/ptb
+sudo octave --no-gui

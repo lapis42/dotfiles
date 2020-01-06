@@ -1,0 +1,1 @@
+sudo mount -t cifs -o user=kimd11,workgroup=HHMI,iocharset=utf8,noperm //dm11.hhmi.org/leelab/from_tier2/leelab/Data/kimd /mnt/dm11

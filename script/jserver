@@ -1,0 +1,1 @@
+ssh -L 8889:localhost:8889 kimd11@10.150.100.224 -f -N
