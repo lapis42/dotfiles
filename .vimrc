@@ -172,7 +172,6 @@ nmap <backspace> X
 " Copy/Paste (needs vim-gnome)
 vmap <C-x> "+x
 vmap <C-c> "+y
-nmap <C-v> "+p
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
