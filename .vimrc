@@ -17,7 +17,9 @@ Plugin 'lervag/vimtex'
 
 " Theme
 Plugin 'patstockwell/vim-monokai-tasty' 
+let g:airline_theme = 'monokai_tasty'
 Plugin 'vim-airline/vim-airline' 
+let g:airline_powerline_fonts = 1
 
 " Navigation
 Plugin 'scrooloose/nerdtree'
@@ -105,7 +107,6 @@ set mouse=a
 let python_highlight_all = 1
 syntax on
 
-let g:airline_theme = 'monokai_tasty'
 colorscheme vim-monokai-tasty
 set background=dark
 set t_ut=

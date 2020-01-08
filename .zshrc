@@ -10,6 +10,16 @@ export ZSH="/home/kimd/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+# in case color looks horrible
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+BG=25
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND=$BG
+POWERLEVEL9K_DIR_HOME_BACKGROUND=$BG
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND=$BG
+POWERLEVEL9K_DIR_ETC_BACKGROUND=$BG
+POWERLEVEL9K_DIR_NOT_WRITABLE_BACKGROUND=$BG
+
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
