@@ -295,4 +295,4 @@ tmux_conf_copy_to_os_clipboard=true
 # move status line to top
 #set -g status-position top
 
-set-option -g default-shell /usr/bin/zsh
+set-option -g default-shell /bin/zsh
