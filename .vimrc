@@ -38,8 +38,6 @@ let g:tagbar_type_matlab = {
         \ 'kinds' : [
             \ 't:TODO',
             \ 'f:function',
-            \ 'F:FIXME',
-            \ 'r:REVIEW',
             \ 's:Section'
         \ ],
         \ 'sort' : 0
