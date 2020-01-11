@@ -33,6 +33,16 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Tag generation
 Plugin 'majutsushi/tagbar' " needs to install ctags
+let g:tagbar_type_matlab = {
+        \ 'ctagstype' : 'matlab',
+        \ 'kinds' : [
+            \ 't:TODO',
+            \ 'F:FIXME',
+            \ 'r:REVIEW',
+            \ 's:Section'
+        \ ],
+        \ 'sort' : 0
+\ }
 
 " REPL
 Plugin 'jpalardy/vim-slime'
