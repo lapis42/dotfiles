@@ -4,3 +4,4 @@
 --regex-matlab=/^\%[ \t]REVIEW\:[ \t](.*)/-\1/r/
 --regex-matlab=/^\%[ \t]FIXME\:[ \t](.*)/-\1/F/
 --regex-matlab=/^\%\%[ \t](.*)/\1/s/
+--regex-matlab=/^[ \t]*function([] A-Za-z0-9,_[]+=[ ]?|[ ]+)([^.(]+).*$/\2/f,function/
