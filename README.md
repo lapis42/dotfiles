@@ -222,4 +222,29 @@ sudo chmod +x ./TeensyduinoInstall.linux64
 - Right click on the window of the running 'Unbuntu shell' and run 'Properties'
 - Change font into DejaVu Sans Mono
 
+## WSL2
+- https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Window-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+- This needs restart...
 
+```powershell
+wsl --set-version Ubuntu 2
+```
+
+
+## X server
+- https://github.com/microsoft/WSL/issues/4106
+```bash
+sudo apt install x11-apps
+```
+
+- add in .zshrc or .bashrc
+```bash
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+```
+
+- Install vcXsrv
+For vcXsrv, **-ac** argument should be added. It allows public access.
