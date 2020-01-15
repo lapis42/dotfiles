@@ -112,6 +112,18 @@ sudo vi /etc/systemd/logind.conf
     - Delete others
 
 
+## Gnome extensions
+```bash
+sudo apt-get install chrome-gnome-sheel
+```
+- https://extensions.gnome.org/
+
+- GTK Title Bar
+https://extensions.gnome.org/extension/1732/gtk-title-bar/
+
+- Unite
+https://extensions.gnome.org/extension/1287/unite/
+
 
 ## Install using Ubuntu Software
 - Libreoffice
