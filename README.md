@@ -118,11 +118,14 @@ sudo apt-get install chrome-gnome-sheel
 ```
 - https://extensions.gnome.org/
 
-- GTK Title Bar
-https://extensions.gnome.org/extension/1732/gtk-title-bar/
-
 - Unite
-https://extensions.gnome.org/extension/1287/unite/
+    - https://extensions.gnome.org/extension/1287/unite/
+
+- OpenWeather
+    - https://extensions.gnome.org/extension/750/openweather/
+
+- Dash to Dock
+    - https://extensions.gnome.org/extension/307/dash-to-dock/
 
 
 ## Install using Ubuntu Software
