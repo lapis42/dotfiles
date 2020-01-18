@@ -101,6 +101,21 @@ sudo vi /etc/systemd/logind.conf
     - Delete others
 
 
+## Gnome extensions
+```bash
+sudo apt-get install chrome-gnome-sheel
+```
+- https://extensions.gnome.org/
+
+- Unite
+    - https://extensions.gnome.org/extension/1287/unite/
+
+- OpenWeather
+    - https://extensions.gnome.org/extension/750/openweather/
+
+- Dash to Dock
+    - https://extensions.gnome.org/extension/307/dash-to-dock/
+
 
 ## Install using Ubuntu Software
 - Libreoffice
@@ -195,9 +210,12 @@ sudo chmod +x ./TeensyduinoInstall.linux64
 # WSL
 - Windows Features > Enable **Windows Subsystem for Linux**
 - Install Ubuntu from Microsoft store
+
+## Font of WSL
 - Download **DejaVu Sans Mono for Powerline.ttf** from *https://github.com/powerline/fonts/tree/master/DejaVuSansMono/* and install by clicking
+- Or download consolas NF (https://github.com/whitecolor/my-nerd-fonts/tree/master/Consolas%20NF)
 - Right click on the window of the running 'Unbuntu shell' and run 'Properties'
-- Change font into DejaVu Sans Mono
+- Change font which is compatible
 
 ## WSL2
 - https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
@@ -224,4 +242,9 @@ export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 ```
 
 - Install vcXsrv
-For vcXsrv, **-ac** argument should be added. It allows public access.
+    - For vcXsrv, **-ac** argument should be added. It allows public access.
+
+
+## wsltty
+- Get wsltty from https://github.com/mintty/wsltty
+- Change fonts to Consolas NF
