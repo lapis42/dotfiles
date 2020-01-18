@@ -103,7 +103,7 @@ sudo vi /etc/systemd/logind.conf
 
 ## Gnome extensions
 ```bash
-sudo apt-get install chrome-gnome-sheel
+sudo apt-get install chrome-gnome-shell
 ```
 - https://extensions.gnome.org/
     - OpenWeather
