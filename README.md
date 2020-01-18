@@ -1,9 +1,8 @@
 # Terminal setting
 ## zsh/oh-my-zsh
 ```bash
-sudo apt install zsh git
+sudo apt install zsh git fonts-powerline
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" # installs oh-my-zsh
-sudo apt install fonts-powerline # installs fonts needed
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 ```
 
@@ -14,37 +13,28 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 
 ## vim/tmux
+### vim setup
 ```bash
-sudo apt install vim vim-gnome xclip tmux ctags
+sudo apt install vim vim-gnome tmux
+sudo apt install xclip # for clipboard share
+sudo apt install ctags # for tagbar
+sudo apt install build-essential cmake python3-dev # for YouCompleteMe
+sudo apt install php # for tagbar-markdown
+sudo apt install latexmk zathura # for vimtex
 ```
-* Copy vim, tmux config files
-* Install vundle
+* Copy .vimrc, .tmux.conf, .tmux.conf.local to your home directory
+* Install vim-plug 
 ```bash
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
-- Launch vim and run :PluginInstall
+- Launch vim and run :PlugInstall
 
-
-### YouCompletMe
-```bash
-sudo apt install build-essential cmake python3-dev
-cd ~/.vim/bundle/YouCompleteMe
-python3 install.py --all
-```
-
-### fzf
-```bash
-~/.vim/bundle/fzf/install
-```
-
-### vimtex
-```bash
-sudo apt install latexmk zathura
-```
+#### vimtex
 - In vim, :VimtexCompile will generate pdf file
 
 
-### Install Tmux Plugin Manager
+### tmux plugin manager 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
@@ -58,8 +48,7 @@ sudo apt install cifs-utils
 
 ## pandoc
 ```bash
-sudo apt install pandoc
-sudo apt install texlive
+sudo apt install pandoc texlive
 ```
 - Running pandoc
 ```bash

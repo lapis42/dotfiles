@@ -1,38 +1,34 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
+" => Vim-plug 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Autocompletion
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' } " needs build-essential cmake python3-dev
 
 " Latex
-Plugin 'lervag/vimtex'
+Plug 'lervag/vimtex' " needs latexmk zathura
 
 " Theme
-Plugin 'patstockwell/vim-monokai-tasty' 
+Plug 'patstockwell/vim-monokai-tasty' 
 let g:airline_theme = 'monokai_tasty'
-Plugin 'vim-airline/vim-airline' 
+Plug 'vim-airline/vim-airline' 
 let g:airline_powerline_fonts = 1
 
 " Navigation
-Plugin 'scrooloose/nerdtree'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Git
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Tag generation
-Plugin 'majutsushi/tagbar' " needs to install ctags
+Plug 'majutsushi/tagbar' " needs to install ctags
+Plug 'lvht/tagbar-markdown' " needs php
+let g:tagbar_sort = 0
 let g:tagbar_type_matlab = {
         \ 'ctagstype' : 'matlab',
         \ 'kinds' : [
@@ -43,12 +39,12 @@ let g:tagbar_type_matlab = {
         \ 'sort' : 0
 \ }
 
+
 " REPL
-Plugin 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,6 +229,7 @@ autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " Open tagbar if a supported file is open in an already running Vim
 autocmd FileType * nested :call tagbar#autoopen(0)
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Shortcut
