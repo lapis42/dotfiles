@@ -18,9 +18,9 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 sudo apt install vim vim-gnome tmux
 sudo apt install xclip # for clipboard share
 sudo apt install ctags # for tagbar
-sudo apt install build-essential cmake python3-dev # for YouCompleteMe
+sudo apt install build-essential cmake python3-dev clangd-9 # for YouCompleteMe
 sudo apt install php # for tagbar-markdown
-sudo apt install latexmk zathura # for vimtex
+sudo apt install latexmk # for vimtex
 ```
 * Copy .vimrc, .tmux.conf, .tmux.conf.local to your home directory
 * Install vim-plug 
@@ -30,8 +30,14 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```
 - Launch vim and run :PlugInstall
 
+#### YouCompleteme
+```bash
+cd ~/.vim/plugged/YouCompleteMe
+python3 install.py --clangd-completer
+```
+
 #### vimtex
-- In vim, :VimtexCompile will generate pdf file
+- In vim, type :VimtexCompile or press <F5> to make pdf file
 
 
 ### tmux plugin manager 
@@ -50,10 +56,13 @@ sudo apt install cifs-utils
 ```bash
 sudo apt install pandoc texlive
 ```
+- Anaconda also has pandoc
 - Running pandoc
+    - You can run the command below or press <F5> in vim.
 ```bash
 pandoc inputfilename.md -s -o outputfilename.pdf
 ```
+
 
 ## trash-cli
 ```bash

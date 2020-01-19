@@ -249,6 +249,12 @@ func! RunProgram()
         exec "!time ~/anaconda3/bin/python %"
     elseif &filetype == 'matlab'
         exec "!time /usr/local/MATLAB/R2019b/bin/matlab -batch %:r"
+    elseif &filetype == 'tex'
+        :VimtexCompile
+    elseif &filetype == 'markdown'
+        exec "!time pandoc % -s -o %:r.pdf & evince %:r.pdf"
+    elseif &filetype == 'c'
+        exec "!time gcc % -o %:r && ./%:r"
     endif
 endfunc
 
