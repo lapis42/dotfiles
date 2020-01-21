@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 " Autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' } " needs build-essential cmake python3-dev
+let g:ycm_autoclose_preview_window_after_completion=1
 
 " Latex
 Plug 'lervag/vimtex' " needs latexmk zathura
