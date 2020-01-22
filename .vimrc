@@ -18,6 +18,9 @@ let g:airline_powerline_fonts = 1
 
 " Navigation
 Plug 'scrooloose/nerdtree'
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules']
+
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -194,7 +197,7 @@ set laststatus=1
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-"map 0 ^
+map 0 ^
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
