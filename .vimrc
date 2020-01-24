@@ -5,22 +5,16 @@ call plug#begin('~/.vim/plugged')
 
 " Autocompletion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' } " needs build-essential cmake python3-dev
-let g:ycm_autoclose_preview_window_after_completion=1
 
 " Latex
-Plug 'lervag/vimtex' " needs latexmk zathura
+Plug 'lervag/vimtex', { 'for': 'tex' } " needs latexmk zathura
 
 " Theme
 Plug 'patstockwell/vim-monokai-tasty' 
-let g:airline_theme = 'monokai_tasty'
 Plug 'vim-airline/vim-airline' 
-let g:airline_powerline_fonts = 1
 
 " Navigation
 Plug 'scrooloose/nerdtree'
-let NERDTreeMinimalUI=1
-let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules']
-
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -32,21 +26,13 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Tag generation
 Plug 'majutsushi/tagbar' " needs to install ctags
 Plug 'lvht/tagbar-markdown' " needs php
-let g:tagbar_sort = 0
-let g:tagbar_type_matlab = {
-        \ 'ctagstype' : 'matlab',
-        \ 'kinds' : [
-            \ 't:TODO',
-            \ 'f:function',
-            \ 's:Section'
-        \ ],
-        \ 'sort' : 0
-\ }
-
 
 " REPL
 Plug 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
+
+" Snippet
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -165,16 +151,6 @@ set wrap "Wrap lines
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
-" Smart way to move between windows
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
-"map <C-h> <C-W>h
-"map <C-l> <C-W>l
-
 " Map <Enter> to insert a new line
 nmap <ENTER> o<ESC>
 nmap <S-ENTER> O<ESC>
@@ -209,34 +185,61 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree
-" Automatically starts NERDTree
-"autocmd VimEnter * NERDTree | wincmd p
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
 
-" Automattically starts NERDTree if no files were specified
+
+" NERDTree
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules']
+" Automatically starts NERDTree if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 " Open NERDTree when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'cd '.argv()[0] | exe 'NERDTree' argv()[0] | endif
-
 " Open NERDTree when vim starts up on opening a file 
 autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
-
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" airline
+let g:airline_theme = 'monokai_tasty'
+let g:airline_powerline_fonts = 1
+
 
 " FZF 
 set rtp+=~/.fzf
 
 
 " tagbar
+let g:tagbar_sort = 0
+let g:tagbar_type_matlab = {
+        \ 'ctagstype' : 'matlab',
+        \ 'kinds' : [
+            \ 't:TODO',
+            \ 'f:function',
+            \ 's:Section'
+        \ ],
+        \ 'sort' : 0
+\ }
 " Open tagbar if a supported file is open
 autocmd VimEnter * nested :call tagbar#autoopen(1)
-
 " Open tagbar if a supported file is open in an already running Vim
 autocmd FileType * nested :call tagbar#autoopen(0)
 
+
+" vim-slime
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
+let g:slime_dont_ask_default = 1
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{next}"}
+
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<F7>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Shortcut
@@ -249,13 +252,14 @@ map <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F5> :call RunProgram()<CR>
 map <F6> :call RunDebug()<CR>
+map <F9> :call RunCell()<CR>
 
 func! RunProgram()
     exec "w"
     if &filetype == 'python'
-        exec "!time ~/anaconda3/bin/python %"
+        exec "!time python %"
     elseif &filetype == 'matlab'
-        exec "!time /usr/local/MATLAB/R2019b/bin/matlab -batch %:r"
+        exec "!time matlab -batch %:r"
     elseif &filetype == 'tex'
         :VimtexCompile
     elseif &filetype == 'markdown'
@@ -268,9 +272,18 @@ endfunc
 func! RunDebug()
     exec "w"
     if &filetype == 'python'
-        exec "!time ~/anaconda3/bin/python -m pdb %"
+        exec "!time python -m pdb %"
     elseif &filetype == 'matlab'
-        exec "!time /usr/local/MATLAB/R2019b/bin/matlab -nodesktop -nosplash -r %:r"
+        exec "!time matlab -nodesktop -nosplash -r %:r"
     endif
 endfunc
 
+func! RunCell()
+    if &filetype == 'python'
+        exec "normal j?##\<CR>v/##\<CR>\<c-c>\<c-c>n"
+        :nohl
+    elseif &filetype == 'matlab'
+        exec "normal j?%%\<CR>v/%%\<CR>\<c-c>\<c-c>n"
+        :nohl
+    endif
+endfunc
