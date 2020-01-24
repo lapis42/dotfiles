@@ -260,22 +260,23 @@ func! RunProgram()
         if ($TMUX=="")
             !python %
         else
-            silent! !tmux send-key -t {next} \%run\ %:r Enter
+            silent! !tmux send-key -t {next} \%run\ %:p Enter
             redraw!
         endif
     elseif &filetype == 'matlab'
         if ($TMUX=="")
             !matlab -batch %:r
         else
-            silent! !tmux send-key -t {next} %:r Enter
+            silent! !tmux send-key -t {next} run\(\'%:p\'\) Enter
             redraw!
         endif
     elseif &filetype == 'tex'
         :VimtexCompile
+        ":VimtexClean
     elseif &filetype == 'markdown'
-        !pandoc % -s -o %:r.pdf & evince %:r.pdf
+        !pandoc %:p -s -o %:p:r.pdf && evince %:p:r.pdf
     elseif &filetype == 'c'
-        !gcc % -o %:r && ./%:r
+        !gcc %:p -o %:p:r && .%:p:r
     endif
 endfunc
 
@@ -284,7 +285,7 @@ func! RunDebug()
     if &filetype == 'python'
         !python -m pdb %
     elseif &filetype == 'matlab'
-        !matlab -nodesktop -nosplash -r %:r
+        !matlab -nodesktop -nosplash -r %:p:r
     endif
 endfunc
 
