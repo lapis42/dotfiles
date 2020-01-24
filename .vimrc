@@ -257,24 +257,34 @@ map <F9> :call RunCell()<CR>
 func! RunProgram()
     exec "w"
     if &filetype == 'python'
-        exec "!time python %"
+        if ($TMUX=="")
+            !python %
+        else
+            silent! !tmux send-key -t {next} \%run\ %:r Enter
+            redraw!
+        endif
     elseif &filetype == 'matlab'
-        exec "!time matlab -batch %:r"
+        if ($TMUX=="")
+            !matlab -batch %:r
+        else
+            silent! !tmux send-key -t {next} %:r Enter
+            redraw!
+        endif
     elseif &filetype == 'tex'
         :VimtexCompile
     elseif &filetype == 'markdown'
-        exec "!time pandoc % -s -o %:r.pdf & evince %:r.pdf"
+        !pandoc % -s -o %:r.pdf & evince %:r.pdf
     elseif &filetype == 'c'
-        exec "!time gcc % -o %:r && ./%:r"
+        !gcc % -o %:r && ./%:r
     endif
 endfunc
 
 func! RunDebug()
     exec "w"
     if &filetype == 'python'
-        exec "!time python -m pdb %"
+        !python -m pdb %
     elseif &filetype == 'matlab'
-        exec "!time matlab -nodesktop -nosplash -r %:r"
+        !matlab -nodesktop -nosplash -r %:r
     endif
 endfunc
 
