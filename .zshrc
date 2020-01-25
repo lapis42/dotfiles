@@ -25,6 +25,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
 
 
+
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -123,6 +125,7 @@ alias rsync='rsync -aP --append-verify'
 
 
 
+
 ###### Installed ######
 # anaconda
 # >>> conda initialize >>>
@@ -145,13 +148,6 @@ unset __conda_setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# dropbox
-$(dropbox running)
-if [[ $? == 0 ]]; then
-    dropbox start
-else
-    echo running
-fi
 
 
 ###### Exports ######
