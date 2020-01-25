@@ -145,6 +145,13 @@ unset __conda_setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+# dropbox
+$(dropbox running)
+if [[ $? == 0 ]]; then
+    dropbox start
+else
+    echo running
+fi
 
 
 ###### Exports ######
