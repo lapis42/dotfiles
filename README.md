@@ -21,6 +21,7 @@ sudo apt install ctags # for tagbar
 sudo apt install build-essential cmake python3-dev clangd-9 # for YouCompleteMe
 sudo apt install php # for tagbar-markdown
 sudo apt install latexmk # for vimtex
+sudo apt install tilda # terminal that I use
 ```
 * Copy .vimrc, .tmux.conf, .tmux.conf.local to your home directory
 * Install vim-plug 
