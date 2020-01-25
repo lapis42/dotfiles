@@ -191,14 +191,13 @@ let g:ycm_autoclose_preview_window_after_completion=1
 
 " NERDTree
 let NERDTreeMinimalUI=1
-let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules']
 " Automatically starts NERDTree if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Open NERDTree when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'cd '.argv()[0] | exe 'NERDTree' argv()[0] | endif
 " Open NERDTree when vim starts up on opening a file 
-autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
+"autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -224,9 +223,9 @@ let g:tagbar_type_matlab = {
         \ 'sort' : 0
 \ }
 " Open tagbar if a supported file is open
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+"autocmd VimEnter * nested :call tagbar#autoopen(1)
 " Open tagbar if a supported file is open in an already running Vim
-autocmd FileType * nested :call tagbar#autoopen(0)
+"autocmd FileType * nested :call tagbar#autoopen(0)
 
 
 " vim-slime
