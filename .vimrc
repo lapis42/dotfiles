@@ -266,7 +266,7 @@ func! RunProgram()
         if ($TMUX=="")
             !matlab -batch %:r
         else
-            silent! !tmux send-key -t {next} %:r Enter
+            silent! !tmux send-key -t {next} run\(\'%:p\'\) Enter
             redraw!
         endif
     elseif &filetype == 'tex'
