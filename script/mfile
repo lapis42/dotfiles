@@ -1,2 +1,0 @@
-#!/bin/bash
-matlab -nodesktop -nosplash -r "$@;disp('Press any key to exit.');pause;exit;"
