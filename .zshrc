@@ -119,8 +119,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 ###### Alias ######
-alias m='matlab -nodesktop -nosplash'
-alias mn='matlab -nodisplay -nosplash'
 alias rsync='rsync -aP --append-verify'
 
 
