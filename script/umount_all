@@ -1,1 +1,0 @@
-sudo umount -a -t cifs -l

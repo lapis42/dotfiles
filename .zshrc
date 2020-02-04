@@ -76,7 +76,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git python tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -146,14 +145,8 @@ export TERM=xterm-256color
 
 # setting path
 MATLAB_PATH=/usr/local/MATLAB/R2019b/bin/
-SCRIPT_PATH=$HOME/conf/script/
-export PATH=$PATH:$MATLAB_PATH:$SCRIPT_PATH
+export PATH=$PATH:$MATLAB_PATH
 
-d=$HOME/Dropbox
-n=$d/note
-s=$d/src
-t=$s/test
-r=$s/rule-switch-task
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -157,12 +157,5 @@ export TERM=xterm-256color
 
 # setting path
 MATLAB_PATH=/usr/local/MATLAB/R2019a/bin/
-SCRIPT_PATH=$HOME/conf/script/
-export PATH=$PATH:$MATLAB_PATH:$SCRIPT_PATH
-
-d=/home/kimd/Dropbox
-n=$d/note
-s=$d/src
-t=$s/test
-r=$s/rule-switch-task
+export PATH=$PATH:$MATLAB_PATH
 
