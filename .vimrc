@@ -66,7 +66,7 @@ set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 " Ignore case when searching
-set ignorecase
+"set ignorecase
 
 " When searching try to be smart about cases
 set smartcase
@@ -81,6 +81,9 @@ set magic
 set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
+
+"Show the next match while entering a search
+set incsearch
 
 " No annoying sound on errors
 set noerrorbells
