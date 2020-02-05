@@ -34,6 +34,9 @@ Plug 'jpalardy/vim-slime'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+" Matlab
+Plug 'yinflying/matlab.vim'
+
 call plug#end()
 
 
