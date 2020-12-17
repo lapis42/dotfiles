@@ -4,7 +4,7 @@
 call plug#begin('~/.vim/plugged')
 
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' } " needs build-essential cmake python3-dev
+Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896', 'do': './install.py --all' } " needs build-essential cmake python3-dev
 
 " Latex
 Plug 'lervag/vimtex', { 'for': 'tex' } " needs latexmk zathura
@@ -121,6 +121,7 @@ source $VIMRUNTIME/menu.vim
 
 " Show invisible charactors
 "set listchars=space:·,eol:↲
+"set listchars=space:·
 "set list
 "hi SpecialKey ctermbg=235
 
@@ -203,7 +204,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Open NERDTree when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'cd '.argv()[0] | exe 'NERDTree' argv()[0] | endif
 " Open NERDTree when vim starts up on opening a file 
-"autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
+autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -229,9 +230,9 @@ let g:tagbar_type_matlab = {
         \ 'sort' : 0
 \ }
 " Open tagbar if a supported file is open
-"autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 " Open tagbar if a supported file is open in an already running Vim
-"autocmd FileType * nested :call tagbar#autoopen(0)
+autocmd FileType * nested :call tagbar#autoopen(0)
 
 
 " vim-slime
@@ -290,7 +291,14 @@ func! RunDebug()
     if &filetype == 'python'
         !python -m pdb %
     elseif &filetype == 'matlab'
-        !matlab -nodesktop -nosplash -r %:p:r
+        "!matlab -nodesktop -nosplash -r %:p:r
+        if ($TMUX=="")
+            !matlab -batch %:r
+        else
+            silent! !tmux send-key -t {next} "try;run('%:p');tgprintf('Done\n');catch err;disp(err.message);tgprintf('Error\n');end;"
+            silent! !tmux send-key -t {next} Enter
+            redraw!
+        endif
     endif
 endfunc
 
