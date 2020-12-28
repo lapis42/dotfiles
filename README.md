@@ -15,7 +15,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ## vim/tmux
 ### vim setup
 ```bash
-sudo apt install vim vim-gnome tmux
+sudo apt install vim tmux vim-gtk3
 sudo apt install xclip # for clipboard share
 sudo apt install ctags # for tagbar
 sudo apt install build-essential cmake python3-dev clangd-9 # for YouCompleteMe
