@@ -22,6 +22,7 @@ sudo apt install build-essential cmake python3-dev clangd-9 # for YouCompleteMe
 sudo apt install php # for tagbar-markdown
 sudo apt install latexmk # for vimtex
 sudo apt install tilda # terminal that I use
+sudo apt install clang-format # for c, cpp formatting
 ```
 * Copy .vimrc, .tmux.conf, .tmux.conf.local to your home directory
 * Install vim-plug 
@@ -188,6 +189,17 @@ sudo dpkg -i ps-pulse-linux-9.0r3.0-b923-ubuntu-debian-64-bit-installer.deb # or
 sudo apt install net-tools
 ```
 - It will not work without the last line
+
+### Using Openconnect
+```bash
+sudo apt-get installl openconnect network-manager-openconnect network-manager-openconnect-gnome
+```
+* Add VPN
+    - Settings > Network > VPN > Add VPN > Multi-protocol VPN client (openconnect)
+        - VPN Protocol: Juniper Network Connect
+        - Gateway: vpn.janelia.org
+        - Token Mode: RSA SecurID-manually entered
+
 
 ## Arduino
 - Download Arduino sketch from website

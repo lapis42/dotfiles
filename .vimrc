@@ -4,7 +4,7 @@
 call plug#begin('~/.vim/plugged')
 
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --all' } " needs build-essential cmake python3-dev
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' } " needs build-essential cmake python3-dev
 
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
@@ -36,6 +36,9 @@ Plug 'jpalardy/vim-slime'
 " Snippet
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
+
+" C, C++
+Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 
 " Matlab
 Plug 'yinflying/matlab.vim'
@@ -123,10 +126,11 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 " Show invisible charactors
+set list
 "set listchars=space:·,eol:↲
 "set listchars=space:·
-"set list
-"hi SpecialKey ctermbg=235
+set listchars=tab:├─,trail:·,space:· 
+hi SpecialKey ctermbg=235
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,7 +172,7 @@ nmap <S-ENTER> O<ESC>
 " Map <backspace> as deletion
 nmap <backspace> X
 
-" Copy/Paste (needs vim-gnome)
+" Copy/Paste (needs vim-gnome or vim-gtk3)
 vmap <C-x> "+x
 vmap <C-c> "+y
 
@@ -264,7 +268,6 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{next}"}
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
-source ~/conf/google_python_style.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Shortcut
@@ -272,6 +275,7 @@ source ~/conf/google_python_style.vim
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 autocmd FileType python nnoremap <F7> :0,$!yapf<Cr><C-o>
+autocmd FileType c,cpp,objc nnoremap <F7> :ClangFormat<Cr><C-o>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function 
@@ -310,9 +314,16 @@ func! RunProgram()
         endif
     elseif &filetype == 'cpp'
         if ($TMUX=="")
-            !gcc %:p -o %:p:r && %:p:r
+            !g++ %:p -o %:p:r -O2 -Wall -lm && %:p:r
         else
-            silent !tmux send-key -t {next} gcc\ %:p\ -o\ %:p:r\ \&\&\ %:p:r Enter
+            silent !tmux send-key -t {next} g++\ %:p\ -o\ %:p:r\ -O2\ -Wall\ -lm\ \&\&\ %:p:r Enter
+            redraw!
+        endif
+    elseif &filetype == 'java'
+        if ($TMUX=="")
+            !javac -encoding UTF-8 %:p && java %:p:r
+        else
+            silent !tmux send-key -t {next} javac\ -encoding\ UTF-8\ %:p\ \&\&\ java\ %:r Enter
             redraw!
         endif
     endif
