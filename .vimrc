@@ -16,11 +16,12 @@ Plug 'lervag/vimtex', { 'for': 'tex' } " needs latexmk zathura
 Plug 'patstockwell/vim-monokai-tasty' 
 Plug 'vim-airline/vim-airline' 
 
-" Navigation
-Plug 'scrooloose/nerdtree'
+" Tmux
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+
+" Nerdtree
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -33,15 +34,11 @@ Plug 'lvht/tagbar-markdown' " needs php
 " REPL
 Plug 'jpalardy/vim-slime'
 
-" Snippet
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
-
 " C, C++
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 
 " Matlab
-Plug 'yinflying/matlab.vim'
+Plug 'yinflying/matlab.vim', { 'for': ['matlab'] }
 
 call plug#end()
 
@@ -115,7 +112,9 @@ let python_highlight_all = 1
 syntax on
 
 colorscheme vim-monokai-tasty
-set background=dark
+hi Type ctermfg=197
+hi SpecialKey ctermbg=235
+
 set t_ut=
 
 " Set utf8 as standard encoding
@@ -127,11 +126,9 @@ source $VIMRUNTIME/menu.vim
 
 " Show invisible charactors
 set list
+set listchars=tab:├─,trail:·,space:· 
 "set listchars=space:·,eol:↲
 "set listchars=space:·
-set listchars=tab:├─,trail:·,space:· 
-hi SpecialKey ctermbg=235
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, and undo
@@ -208,12 +205,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntaxtic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_matlab_mlint_exec = '~/MATLAB/R2020b/bin/glnxa64/mlint'
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['python', 'matlab'] }
 
 
 " NERDTree
@@ -224,7 +222,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Open NERDTree when vim starts up on opening a directory
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'cd '.argv()[0] | exe 'NERDTree' argv()[0] | endif
 " Open NERDTree when vim starts up on opening a file 
-"autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
+autocmd VimEnter * if argc() == 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -232,10 +230,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " airline
 let g:airline_theme = 'monokai_tasty'
 let g:airline_powerline_fonts = 1
-
-
-" FZF 
-set rtp+=~/.fzf
 
 
 " tagbar
@@ -250,7 +244,7 @@ let g:tagbar_type_matlab = {
         \ 'sort' : 0
 \ }
 " Open tagbar if a supported file is open
-"autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 " Open tagbar if a supported file is open in an already running Vim
 "autocmd FileType * nested :call tagbar#autoopen(0)
 
@@ -262,13 +256,6 @@ let g:slime_dont_ask_default = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{next}"}
 
 
-" ultisnips
-"let g:UltiSnipsExpandTrigger="<F7>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Shortcut
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,6 +263,7 @@ map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 autocmd FileType python nnoremap <F7> :0,$!yapf<Cr><C-o>
 autocmd FileType c,cpp,objc nnoremap <F7> :ClangFormat<Cr><C-o>
+map <F4> :SyntasticCheck<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Function 
