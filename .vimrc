@@ -113,7 +113,10 @@ syntax on
 
 colorscheme vim-monokai-tasty
 hi Type ctermfg=197
-hi SpecialKey ctermbg=235
+"hi SpecialKey ctermbg=235
+hi SpecialKey ctermbg=None
+hi Normal ctermbg=None
+hi VertSplit ctermbg=None
 
 set t_ut=
 
