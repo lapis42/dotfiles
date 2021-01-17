@@ -15,6 +15,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' } " needs latexmk zathura
 " Theme
 Plug 'patstockwell/vim-monokai-tasty' 
 Plug 'vim-airline/vim-airline' 
+Plug 'Yggdroot/indentLine'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -114,7 +115,7 @@ syntax on
 colorscheme vim-monokai-tasty
 hi Type ctermfg=197
 "hi SpecialKey ctermbg=235
-hi SpecialKey ctermbg=None
+"hi SpecialKey ctermbg=None
 hi Normal ctermbg=None
 hi VertSplit ctermbg=None
 
@@ -128,8 +129,8 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 " Show invisible charactors
-set list
-set listchars=tab:├─,trail:·,space:· 
+"set list
+"set listchars=tab:├─,trail:·,space:· 
 "set listchars=space:·,eol:↲
 "set listchars=space:·
 
