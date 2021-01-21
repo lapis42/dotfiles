@@ -1,10 +1,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-plug 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' } " needs build-essential cmake python3-dev
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } " need nodejs, yarn
 
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
@@ -41,7 +41,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 
 " Matlab
-Plug 'yinflying/matlab.vim', { 'for': ['matlab'] }
+Plug 'yinflying/matlab.vim'
 
 call plug#end()
 
