@@ -6,37 +6,46 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 ```
 
-Change .zshrc
+- Change .zshrc
 ```bash
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
+
+- Download UbuntuMono Nerd Font at https://www.nerdfonts.com/font-downloads
+
 
 
 ## vim/tmux
 ### vim setup
 ```bash
-sudo apt install vim tmux vim-gtk3
+sudo apt install neovim tmux
+sudo apt install nodejs npm # for coc-nvim
 sudo apt install xclip # for clipboard share
 sudo apt install ctags # for tagbar
-sudo apt install build-essential cmake python3-dev clangd-9 # for YouCompleteMe
 sudo apt install php # for tagbar-markdown
 sudo apt install latexmk # for vimtex
 sudo apt install tilda # terminal that I use
 sudo apt install clang-format # for c, cpp formatting
 ```
-* Copy .vimrc, .tmux.conf, .tmux.conf.local to your home directory
+* Copy .tmux.conf, .tmux.conf.local to your home directory
+* Copy init.vim to ~/.config/nvim/
 * Install vim-plug 
 ```bash
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
-- Launch vim and run :PlugInstall
+- Launch nvim and run :PlugInstall
 
-#### YouCompleteme
-```bash
-cd ~/.vim/plugged/YouCompleteMe
-python3 install.py --clangd-completer
-```
+
+#### Coc setup
+:CocInstall coc-marketplace
+:CocList coc-marketplace
+
+coc-clangd
+coc-omnisharp for C#
+coc-python for python
+coc-ultisnips
+
 
 #### vimtex
 - In vim, type :VimtexCompile or press <F5> to make pdf file
@@ -49,10 +58,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 - prefix + I: install new plugins and refress tmux 
 - prefix + U: update plugins
 
+
 ## cifs-utils for smb
 ```bash
 sudo apt install cifs-utils
 ```
+
 
 ## pandoc
 ```bash
@@ -66,14 +77,6 @@ pandoc inputfilename.md -s -o outputfilename.pdf
 ```
 
 
-## trash-cli
-```bash
-sudo apt install trach-cli
-```
-
-
-
-
 # Gnome setting
 ## Gnome-tweak-tool
 ```bash
@@ -83,14 +86,7 @@ sudo apt install gnome-tweak-tool
 - Korean Hangul/Hanj keys: Right Alt as Hangul, right Ctrl as Hanja
 - Keyboard & Mouse > Mouse > Middle Click Paste: False
 - Power > Suspend when laptop lid is closed: Off
-- Top Bar > Battery Percentage: On
-- Top Bar > Clock > Data: On
-- Top Bar > Clock > Seconds: On
 
-```bash
-sudo vi /etc/systemd/logind.conf
-```
-- #HandleLidSwitch=suspend > HandleLidSwitch=ignore
 
 ## Settings
 - Background: Black
@@ -101,9 +97,19 @@ sudo vi /etc/systemd/logind.conf
 - Devices > Mouse & Touchpad > Mouse > Mouse Speed: Max
 - Devices > Mouse & Touchpad > Touchpad > Touchpad Speed: Max
 
+
+## Change theme
+- Download https://www.gnome-look.org/p/1253385/
+- Extract the zip file to the themes directory ~/.themes
+```bash
+gsettings set org.gnome.desktop.interface gtk-theme Sweet-Dark
+gsettings set org.gnome.desktop.wm.preferences theme Sweet-Dark
+```
+
+
 ## Korean
 - Run 'Language Support'
-- Install / Remove Languages... > Korean
+- Install / Remove Languages... > Korean > Reboot
 - Setting > Region & Language
 - Add Keyboard 'Korean (Hangul)'
 - Delete English
@@ -144,6 +150,7 @@ sudo apt install libavcodec-extra
 ```
 - Codec for video
 
+
 ### Enable backspace
 Type **about:config** in the address bar of Firefox and search for **browser.backspace_action**. Change its value from **2** to **0** and now you can use Backspace to go back in history.
 
@@ -153,18 +160,21 @@ Type **about:config** in the address bar of Firefox and search for **browser.bac
 - Download deb file
 - Open with 'Software Install (default)'
 
+
 ## Anaconda
 - Download sh file from anaconda
 ```bash
 sh ./Anaconda3_2019.07-Linux-x86_64.sh
 conda install -c conda-forge jupyterlab
-conda install tensorflow
+conda install pytorch
 pip install gym
 ```
+
 
 ## Mendeley
 - https://www.mendeley.com/download-desktop/
 - Download for Ubuntu and Kubuntu 16.04 LTS, 17.04 and Debian Stretch 9 > 64bit
+
 
 ## Matlab
 - https://www.mathworks.com
@@ -174,12 +184,14 @@ pip install gym
 sudo sh install
 ```
 
+
 ## FreeCAD
 ```bash
 sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
 sudo apt-get update
 sudo apt-get install freecad
 ```
+
 
 ## VPN
 - Download Pulse Secure VPN Client from 'https://vpn.janelia.org'
@@ -189,6 +201,7 @@ sudo dpkg -i ps-pulse-linux-9.0r3.0-b923-ubuntu-debian-64-bit-installer.deb # or
 sudo apt install net-tools
 ```
 - It will not work without the last line
+
 
 ### Using Openconnect
 ```bash
