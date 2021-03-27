@@ -76,6 +76,11 @@ sudo apt install pandoc texlive
 pandoc inputfilename.md -s -o outputfilename.pdf
 ```
 
+# youtube downloader
+```bash
+sudo apt install youtube-dl
+```
+
 
 # Gnome setting
 ## Gnome-tweak-tool
