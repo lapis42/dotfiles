@@ -110,6 +110,9 @@ source $ZSH/oh-my-zsh.sh
 
 ###### Alias ######
 alias rsync='rsync -aP --append-verify'
+alias vi='nvim'
+alias m='matlab -nodesktop -nosplash'
+alias mn='matlab -nodisplay -nosplash'
 
 
 
@@ -144,8 +147,13 @@ export TERM=xterm-256color
 
 
 # setting path
-MATLAB_PATH=/usr/local/MATLAB/R2019b/bin/
+MATLAB_PATH=/usr/local/MATLAB/R2021a/bin/
 export PATH=$PATH:$MATLAB_PATH
+
+d=~/Dropbox
+s=$d/src
+n=$d/note
+r=$s/rule-switch-task
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
