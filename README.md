@@ -239,3 +239,15 @@ sudo chmod +x ./TeensyduinoInstall.linux64
 ./TeensyduinoInstall.linux64
 ```
 
+## Install Xerox driver for apt printer
+- Download and install printer driver from xerox website
+
+https://www.support.xerox.com/en-us/product/workcentre-6515/downloads?language=en
+
+```bash
+sudo chown root:root /tmp/XeroxOfficedriver.log
+sudo xeroxofficeprtmgr
+```
+
+- Add printer
+    - IP: 10.8.1.20 (should be connected to VPN)
