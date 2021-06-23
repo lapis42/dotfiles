@@ -405,42 +405,42 @@ func! RunProgram()
     exec "w"
     if &filetype == 'python'
         if ($TMUX=="")
-            !python %
+            !python "%"
         else
-            silent! !tmux send-key -t {next} \%run\ %:p Enter
+            silent! !tmux send-key -t {next} "%run %:p" Enter
             redraw!
         endif
     elseif &filetype == 'matlab'
         if ($TMUX=="")
-            !matlab -batch %:r
+            !matlab -batch "%:r"
         else
-            silent! !tmux send-key -t {next} run\(\'%:p\'\) Enter
+            silent! !tmux send-key -t {next} "run('%:p')" Enter
             redraw!
         endif
     elseif &filetype == 'tex'
         :VimtexCompile
         ":VimtexClean
     elseif &filetype == 'markdown'
-        !pandoc %:p -s -o %:p:r.pdf && evince %:p:r.pdf
+        !pandoc "%:p" -s -o "%:p:r.pdf" && evince "%:p:r.pdf"
     elseif &filetype == 'c'
         if ($TMUX=="")
-            !gcc %:p -o %:p:r && %:p:r
+            !gcc "%:p" -o "%:p:r" && "%:p:r"
         else
-            silent !tmux send-key -t {next} gcc\ %:p\ -o\ %:p:r\ \&\&\ %:p:r Enter
+            silent !tmux send-key -t {next} "gcc %:p -o %:p:r && %:p:r" Enter
             redraw!
         endif
     elseif &filetype == 'cpp'
         if ($TMUX=="")
-            !g++ %:p -o %:p:r -O2 -Wall -lm && %:p:r
+            !g++ "%:p" -o "%:p:r" -O2 -Wall -lm && "%:p:r"
         else
-            silent !tmux send-key -t {next} g++\ %:p\ -o\ %:p:r\ -O2\ -Wall\ -lm\ \&\&\ %:p:r Enter
+            silent !tmux send-key -t {next} "g++ %:p -o %:p:r -O2 -Wall -lm && %:p:r" Enter
             redraw!
         endif
     elseif &filetype == 'java'
         if ($TMUX=="")
-            !javac -encoding UTF-8 %:p && java %:p:r
+            !javac -encoding UTF-8 "%:p" && java "%:p:r"
         else
-            silent !tmux send-key -t {next} javac\ -encoding\ UTF-8\ %:p\ \&\&\ java\ %:r Enter
+            silent !tmux send-key -t {next} "javac -encoding UTF-8 %:p && java %:r" Enter
             redraw!
         endif
     endif
@@ -449,14 +449,13 @@ endfunc
 func! RunDebug()
     exec "w"
     if &filetype == 'python'
-        !pypy3 -m pdb %
+        !pypy3 -m pdb "%"
     elseif &filetype == 'matlab'
         "!matlab -nodesktop -nosplash -r %:p:r
         if ($TMUX=="")
-            !matlab -batch %:r
+            !matlab -batch "%:r"
         else
-            silent! !tmux send-key -t {next} "try;run('%:p');tgprintf('Done\n');catch err;disp(err.message);tgprintf('Error\n');end;"
-            silent! !tmux send-key -t {next} Enter
+            silent! !tmux send-key -t {next} "try;run('%:p');tgprintf('Done\n');catch err;disp(err.message);tgprintf('Error\n');end;" Enter
             redraw!
         endif
     endif

@@ -119,26 +119,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 ###### Installed ######
-
-# anaconda
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/groups/lee/home/kimd/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/groups/lee/home/kimd/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/groups/lee/home/kimd/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/groups/lee/home/kimd/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # dropbox
 $(dropbox running)
 if [[ $? == 0 ]]; then
@@ -149,7 +129,6 @@ fi
 
 
 ###### Exports ######
-
 # tmux
 export TERM=xterm-256color
 
@@ -160,4 +139,3 @@ export PATH=$PATH:$MATLAB_PATH
 # CUDA
 export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-

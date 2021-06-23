@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# install
+sudo apt install zsh fonts-powerline curl -y
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+sudo apt install neovim tmux nodejs npm xclip ctags php latexmk tilda clang-format -y
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+sudo apt install cifs-utils pandoc texlive -y
+sudo apt install youtube-dl -y
+sudo apt install gnome-tweak-tool chrome-gnome-shell -y
+
+
+# link dotfiles
+dotfiles_dir=~/dotfiles
+ln -sf $dotfiles_dir/ctags ~/.ctags
+ln -sf $dotfiles_dir/gitconfig ~/.gitconfig
+ln -sf $dotfiles_dir/init.vim ~/.config/nvim
+ln -sf $dotfiles_dir/pylintrc ~/.pylintrc
+ln -sf $dotfiles_dir/tmux.conf ~/.tmux.conf
+ln -sf $dotfiles_dir/tmux.conf.local ~/.tmux.conf.local
+ln -sf $dotfiles_dir/zshrc ~/.zshrc
