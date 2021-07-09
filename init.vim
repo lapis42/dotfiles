@@ -407,7 +407,7 @@ func! RunProgram()
         if ($TMUX=="")
             !python "%"
         else
-            silent! !tmux send-key -t {next} "%run %:p" Enter
+            silent! !tmux send-key -t {next} "run '%:p'" Enter
             redraw!
         endif
     elseif &filetype == 'matlab'

@@ -171,9 +171,25 @@ Type **about:config** in the address bar of Firefox and search for **browser.bac
 ```bash
 sh ./Anaconda3_2019.07-Linux-x86_64.sh
 conda install -c conda-forge jupyterlab
-conda install pytorch
-pip install gym
+pip install stabel-baseline3 torch torchvision
+pip install python-telegram-bot
 ```
+
+### Install Selenium
+```bash
+pip install selenium
+```
+
+- Install geckodriver for Firefox
+```bash
+wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
+tar -xvzf geckodriver*
+mkdir ~/.local/bin
+mv geckodriver ~/.local/bin
+```
+- Check whether ~/.local/bin is included in $PATH
+- For more information, check https://selenium-python.readthedocs.io/index.html
+
 
 
 ## Mendeley
