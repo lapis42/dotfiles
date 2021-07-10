@@ -142,7 +142,7 @@ unset __conda_setup
 
 # matlab
 if [ -d "/usr/local/MATLAB" ]; then
-    export MATLAB=/usr/local/MATLAB/$(ls /usr/local/MATLAB | head -n 1)
+    export MATLAB=/usr/local/MATLAB/$(ls /usr/local/MATLAB | head -n 1)/bin
     export PATH=$PATH:$MATLAB
     alias m='matlab -nodesktop -nosplash'
     alias mn='matlab -nodisplay -nosplash'
