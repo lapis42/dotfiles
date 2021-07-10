@@ -158,6 +158,10 @@ export TERM=xterm-256color
 
 
 # setting path
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH=$PATH:$HOME/.local/bin
+fi
+
 myhome=/home/$(keyring get my id)
 d=$myhome/Dropbox
 s=$d/src
