@@ -109,10 +109,11 @@ source $ZSH/oh-my-zsh.sh
 
 
 ###### Alias ######
-alias rsync='rsync -aP --append-verify'
-alias vi='nvim'
-alias m='matlab -nodesktop -nosplash'
-alias mn='matlab -nodisplay -nosplash'
+alias rsync='sudo rsync -aP --append-verify'
+
+if type nvim >/dev/null 2>/dev/null; then
+    alias vi=nvim
+fi
 
 
 
@@ -139,6 +140,16 @@ unset __conda_setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+# matlab
+if [ -d "/usr/local/MATLAB" ]; then
+    export MATLAB=/usr/local/MATLAB/$(ls /usr/local/MATLAB | head -n 1)
+    export PATH=$PATH:$MATLAB
+    alias m='matlab -nodesktop -nosplash'
+    alias mn='matlab -nodisplay -nosplash'
+else
+    alias m='echo no matlab found'
+    alias mn='echo no matlab found'
+fi
 
 
 ###### Exports ######
@@ -147,13 +158,10 @@ export TERM=xterm-256color
 
 
 # setting path
-MATLAB_PATH=/usr/local/MATLAB/R2021a/bin/
-export PATH=$PATH:$MATLAB_PATH
-
-d=~/Dropbox
+myhome=/home/$(keyring get my id)
+d=$myhome/Dropbox
 s=$d/src
 n=$d/note
-r=$s/rule-switch-task
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
