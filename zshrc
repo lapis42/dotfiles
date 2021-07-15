@@ -109,14 +109,14 @@ source $ZSH/oh-my-zsh.sh
 
 
 ###### Alias ######
-alias rsync='sudo rsync -aP --append-verify'
+alias rsync='rsync -aP --append-verify'
 
 if type nvim >/dev/null 2>/dev/null; then
     alias vi=nvim
 fi
 
-alias ym='youtube-dl -x --audio-format "mp3" --audio-quality 0 --add-metadata --embed-thumbnail -o "%(artist)s - %(track)s.%(ext)s"'
-alias yl='youtube-dl --yes-playlist -x --audio-format "mp3" --audio-quality 0 --add-metadata --embed-thumbnail -o "%(artist)s - %(track)s.%(ext)s"'
+alias ym='youtube-dl --no-playlist -x --audio-format "mp3" --audio-quality 0 --add-metadata --embed-thumbnail -o "%(artist)s - %(track)s.%(ext)s" $(xclip -o)'
+alias yl='youtube-dl -i -x --audio-format "mp3" --audio-quality 0 --add-metadata --embed-thumbnail -o "%(artist)s - %(track)s.%(ext)s" $(xclip -o)'
 
 
 
