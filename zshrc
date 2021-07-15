@@ -115,6 +115,9 @@ if type nvim >/dev/null 2>/dev/null; then
     alias vi=nvim
 fi
 
+alias ym='youtube-dl -x --audio-format "mp3" --audio-quality 0 --add-metadata --embed-thumbnail -o "%(artist)s - %(track)s.%(ext)s"'
+alias yl='youtube-dl --yes-playlist -x --audio-format "mp3" --audio-quality 0 --add-metadata --embed-thumbnail -o "%(artist)s - %(track)s.%(ext)s"'
+
 
 
 
